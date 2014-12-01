@@ -29,6 +29,8 @@ var = inv(transp(x) * x);
 SSR = transp(b) * transp(x) * y - n * mean(y)^2;
 SSE = transp(y - x * b) * (y - x * b);
 SST = sum((y - mean(y)).^2);
+fprintf('SSE: %f\n', SSE);
+fprintf('SSR: %f\n', SSR);
 if (abs(SST - (SSR + SSE)) > 1)
     fprintf('SUMS DO NOT MATCH, ERROR\n');
     fprintf('%f != %f\n', SST, SSR + SSE);
@@ -42,7 +44,7 @@ MSE = SSE/(n-p-1);
 fprintf('MSR: %f, MSE: %f\n', MSR, MSE);
 
 F = MSR/MSE;
-
+fprintf('F: %f\n', F);
 pval = fpdf( F, n-p-1, p);
 fprintf('P value: %f\n', pval);
 if (pval > 0.05)
